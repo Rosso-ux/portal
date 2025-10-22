@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import type { Metadata } from "next";
+
 export const metadata: Metadata = {
   title: "Portal de Viagens",
   description: "Explore destinos incríveis ao redor do mundo!",
