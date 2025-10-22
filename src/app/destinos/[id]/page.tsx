@@ -7,13 +7,13 @@ interface Params {
   id: string;
 }
 
-// ✅ Aqui a função precisa ser async
+// Aqui a função precisa ser async
 export default async function DestinoDetalhe({
   params,
 }: {
   params: Params | Promise<Params>;
 }) {
-  // 🔹 Garantir que params seja resolvido
+  // Garantir que params seja resolvido
   const resolvedParams = params instanceof Promise ? await params : params;
   const { id } = resolvedParams;
 
