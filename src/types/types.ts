@@ -1,6 +1,7 @@
 export interface Destinos {
   id: number;
   title: string;
-  descricao: string;
+  descricaoCurta: string;
   imagem: string;
+  descricaoCompleta: string;
 }
