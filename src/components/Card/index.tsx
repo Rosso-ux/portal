@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./CardDestino.module.css";
 
@@ -17,7 +17,15 @@ export default function CardDestino({
 }: CardDestinoProps) {
   return (
     <div className={styles.card}>
-      <img src={imagem} alt={title} className={styles.imagem} />
+      <Image
+        src={imagem}
+        alt={title}
+        width={400}
+        height={250}
+        className={styles.imagem}
+        loading="lazy"
+      />
+
       <div className={styles.conteudo}>
         <h3>{title}</h3>
         <p>{descricaoCurta}</p>

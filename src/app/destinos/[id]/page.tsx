@@ -1,19 +1,15 @@
-/* eslint-disable @next/next/no-img-element */
-
+import Image from "next/image";
 import { destinos } from "@/data/destino";
 import styles from "../destinos.module.css";
 
 interface Params {
   id: string;
 }
-
-// Aqui a função precisa ser async
 export default async function DestinoDetalhe({
   params,
 }: {
   params: Params | Promise<Params>;
 }) {
-  // Garantir que params seja resolvido
   const resolvedParams = params instanceof Promise ? await params : params;
   const { id } = resolvedParams;
 
@@ -22,18 +18,15 @@ export default async function DestinoDetalhe({
   if (!destino) {
     return <p>Destino não encontrado.</p>;
   }
-
   return (
     <div className={styles.container}>
       <h2>{destino.title}</h2>
-      <img
+      <Image
         src={destino.imagem}
         alt={destino.title}
-        style={{
-          maxWidth: "600px",
-          borderRadius: "10px",
-          marginTop: "1rem",
-        }}
+        width={800}
+        height={500}
+        priority
       />
       <p style={{ marginTop: "1rem", lineHeight: "1.6" }}>
         {destino.descricaoCompleta}
