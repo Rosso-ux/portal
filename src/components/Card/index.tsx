@@ -23,7 +23,8 @@ export default function CardDestino({
         width={400}
         height={250}
         className={styles.imagem}
-        loading="lazy"
+        priority={id === 1}
+        sizes="(max-width: 768px) 100vw, 400px"
       />
 
       <div className={styles.conteudo}>

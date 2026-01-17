@@ -1,26 +1,26 @@
-import Image from "next/image";
 import { destinos } from "@/data/destino";
+import Image from "next/image";
 import styles from "../destinos.module.css";
 
-interface Params {
-  id: string;
-}
-export default async function DestinoDetalhe({
-  params,
-}: {
-  params: Params | Promise<Params>;
-}) {
-  const resolvedParams = params instanceof Promise ? await params : params;
-  const { id } = resolvedParams;
+type Props = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+export default async function Page({ params }: Props) {
+  const { id } = await params;
 
   const destino = destinos.find((d) => d.id === Number(id));
 
   if (!destino) {
     return <p>Destino não encontrado.</p>;
   }
+
   return (
     <div className={styles.container}>
       <h2>{destino.title}</h2>
+
       <Image
         src={destino.imagem}
         alt={destino.title}
@@ -28,9 +28,8 @@ export default async function DestinoDetalhe({
         height={500}
         priority
       />
-      <p style={{ marginTop: "1rem", lineHeight: "1.6" }}>
-        {destino.descricaoCompleta}
-      </p>
+
+      <p className={styles.descricao}>{destino.descricaoCompleta}</p>
     </div>
   );
 }
